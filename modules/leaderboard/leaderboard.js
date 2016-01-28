@@ -66,9 +66,9 @@ class LeaderBoard extends Component {
           <RefreshControl
             refreshing={ this.state.isRefreshing }
             onRefresh={ onRefreshHelper }
-            tintColor="#ff0000"
+            tintColor="#222222"
             title="Loading..."
-            colors={ [ "#ff0000", "#00ff00", "#0000ff" ] }
+            colors={ [ "#222222" ] }
             progressBackgroundColor="#ffff00"
           />
         }>
@@ -94,14 +94,34 @@ class LeaderBoard extends Component {
     );
   }
   renderPlayer( player ) {
-    return ( <PlayerSlug player={player}></PlayerSlug> );
+    return (
+      <View style={ styles.rowWrapper }>
+        <PlayerSlug player={player}></PlayerSlug>
+      </View> );
   }
 };
 
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    marginTop: 65
+    marginTop: 65,
+    paddingTop: 4,
+    backgroundColor: "#ad5d34"
+  },
+  rowWrapper: {
+    borderColor: "#F5FCFF",
+    borderRadius: 1,
+    borderWidth: 1,
+    flex: 1,
+    marginLeft: 8,
+    marginRight: 8,
+    marginBottom: 6,
+    shadowColor: "#000000",
+    shadowOpacity: 0.25,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    }
   },
   container: {
     flex: 1,

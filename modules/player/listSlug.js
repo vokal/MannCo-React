@@ -26,7 +26,7 @@ class PlayerSlug extends Component {
           style={ styles.thumbnail }
           />
         <View style={ styles.rightContainer }>
-          <Text style={ styles.playerName }>{ player.NAME }</Text>
+          <Text style={ styles.playerName }>{ player.NAME.toUpperCase() }</Text>
           <Text style={ styles.playerKills }>
             Points: { player.POINTS } - Kills: { player.KILLS }
           </Text>

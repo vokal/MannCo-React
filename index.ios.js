@@ -26,7 +26,7 @@ class MannCo extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#111111"
+    backgroundColor: "#ad5d34"
   }
 });
 
