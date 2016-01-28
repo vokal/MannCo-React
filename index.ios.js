@@ -14,11 +14,11 @@ class MannCo extends Component {
   render() {
     return (
       <NavigatorIOS
-        style={styles.container}
+        style={ styles.container }
         initialRoute={{
           title: "MannCo Leaderboard",
           component: LeaderBoard
-        }} />
+        }}/>
     );
   }
 }

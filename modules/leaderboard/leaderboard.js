@@ -87,7 +87,7 @@ class LeaderBoard extends Component {
           Welcome to the MannCo Reports!
         </Text>
         <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
+          Press Cmd+R to reload,{"\n"}
           Cmd+D or shake for dev menu
         </Text>
       </View>
@@ -105,18 +105,18 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#48BBEC',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#48BBEC",
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     margin: 10,
   },
   instructions: {
-    textAlign: 'center',
-    color: '#333333',
+    textAlign: "center",
+    color: "#333333",
     marginBottom: 5,
   },
   listview: {
