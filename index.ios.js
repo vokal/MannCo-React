@@ -14,11 +14,11 @@ class MannCo extends Component {
   render() {
     return (
       <NavigatorIOS
-        style={styles.container}
+        style={ styles.container }
         initialRoute={{
-          title: "MannCo Leaderboard",
+          title: "Leaderboard",
           component: LeaderBoard
-        }} />
+        }}/>
     );
   }
 }
@@ -26,7 +26,7 @@ class MannCo extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#111111"
+    backgroundColor: "#ad5d34"
   }
 });
 

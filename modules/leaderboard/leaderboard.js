@@ -7,10 +7,13 @@ import React, {
   View,
   ListView,
   ScrollView,
-  RefreshControl
+  RefreshControl,
+  TouchableHighlight
 } from "react-native";
+
+import Player from "../player/services/player";
 import PlayerSlug from "../player/listSlug";
-var Player = require( "../player/services/player" );
+import PlayerDetail from "../player/detail";
 
 class LeaderBoard extends Component {
   constructor() {
@@ -50,14 +53,21 @@ class LeaderBoard extends Component {
       } )
       .done();
   }
+  _onPlayerTap( player ) {
+    this.props.navigator.push( {
+      component: PlayerDetail,
+      title: player.NAME.toUpperCase(),
+      passProps: {
+        steamid: player.STEAMID
+      }
+    } );
+  }
 
   render() {
     if( !this.state.loaded )
     {
       return this.renderLoadingView();
     }
-    // necessary because 'this' is otherwise undefined in _onRefresh
-    var onRefreshHelper = () => this._onRefresh.apply( this );
 
     return (
       <ScrollView
@@ -65,16 +75,16 @@ class LeaderBoard extends Component {
         refreshControl={
           <RefreshControl
             refreshing={ this.state.isRefreshing }
-            onRefresh={ onRefreshHelper }
-            tintColor="#ff0000"
+            onRefresh={ this._onRefresh.bind( this ) }
+            tintColor="#222222"
             title="Loading..."
-            colors={ [ "#ff0000", "#00ff00", "#0000ff" ] }
+            colors={ [ "#222222" ] }
             progressBackgroundColor="#ffff00"
           />
         }>
         <ListView
           dataSource={ this.state.dataSource }
-          renderRow={ this.renderPlayer }
+          renderRow={ this.renderPlayer.bind( this ) }
           style={ styles.listView }
           />
       </ScrollView>
@@ -87,36 +97,59 @@ class LeaderBoard extends Component {
           Welcome to the MannCo Reports!
         </Text>
         <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
+          Press Cmd+R to reload,{"\n"}
           Cmd+D or shake for dev menu
         </Text>
       </View>
     );
   }
   renderPlayer( player ) {
-    return ( <PlayerSlug player={player}></PlayerSlug> );
+    var onPress = () => this._onPlayerTap( player );
+    return (
+      <TouchableHighlight onPress={ onPress }>
+        <View style={ styles.rowWrapper }>
+          <PlayerSlug player={ player }></PlayerSlug>
+        </View>
+      </TouchableHighlight> );
   }
 };
 
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    marginTop: 65
+    marginTop: 65,
+    paddingTop: 4,
+    backgroundColor: "#ad5d34"
+  },
+  rowWrapper: {
+    borderColor: "#F5FCFF",
+    borderRadius: 1,
+    borderWidth: 1,
+    flex: 1,
+    marginLeft: 8,
+    marginRight: 8,
+    marginBottom: 6,
+    shadowColor: "#000000",
+    shadowOpacity: 0.25,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    }
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#48BBEC',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#48BBEC",
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     margin: 10,
   },
   instructions: {
-    textAlign: 'center',
-    color: '#333333',
+    textAlign: "center",
+    color: "#333333",
     marginBottom: 5,
   },
   listview: {
