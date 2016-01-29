@@ -75,7 +75,7 @@ class LeaderBoard extends Component {
         refreshControl={
           <RefreshControl
             refreshing={ this.state.isRefreshing }
-            onRefresh={ this._onRefresh.bind( this ) }
+            onRefresh={ () => this._onRefresh() }
             tintColor="#222222"
             title="Loading..."
             colors={ [ "#222222" ] }
@@ -104,9 +104,8 @@ class LeaderBoard extends Component {
     );
   }
   renderPlayer( player ) {
-    var onPress = () => this._onPlayerTap( player );
     return (
-      <TouchableHighlight onPress={ onPress }>
+      <TouchableHighlight onPress={ () => this._onPlayerTap( player ) }>
         <View style={ styles.rowWrapper }>
           <PlayerSlug player={ player }></PlayerSlug>
         </View>
