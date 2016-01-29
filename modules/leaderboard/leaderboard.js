@@ -7,10 +7,13 @@ import React, {
   View,
   ListView,
   ScrollView,
-  RefreshControl
+  RefreshControl,
+  TouchableHighlight
 } from "react-native";
+
+import Player from "../player/services/player";
 import PlayerSlug from "../player/listSlug";
-var Player = require( "../player/services/player" );
+import PlayerDetail from "../player/detail";
 
 class LeaderBoard extends Component {
   constructor() {
@@ -50,14 +53,21 @@ class LeaderBoard extends Component {
       } )
       .done();
   }
+  _onPlayerTap( player ) {
+    this.props.navigator.push( {
+      component: PlayerDetail,
+      title: player.NAME.toUpperCase(),
+      passProps: {
+        steamid: player.STEAMID
+      }
+    } );
+  }
 
   render() {
     if( !this.state.loaded )
     {
       return this.renderLoadingView();
     }
-    // necessary because 'this' is otherwise undefined in _onRefresh
-    var onRefreshHelper = () => this._onRefresh.apply( this );
 
     return (
       <ScrollView
@@ -65,7 +75,7 @@ class LeaderBoard extends Component {
         refreshControl={
           <RefreshControl
             refreshing={ this.state.isRefreshing }
-            onRefresh={ onRefreshHelper }
+            onRefresh={ this._onRefresh.bind( this ) }
             tintColor="#222222"
             title="Loading..."
             colors={ [ "#222222" ] }
@@ -74,7 +84,7 @@ class LeaderBoard extends Component {
         }>
         <ListView
           dataSource={ this.state.dataSource }
-          renderRow={ this.renderPlayer }
+          renderRow={ this.renderPlayer.bind( this ) }
           style={ styles.listView }
           />
       </ScrollView>
@@ -94,10 +104,13 @@ class LeaderBoard extends Component {
     );
   }
   renderPlayer( player ) {
+    var onPress = () => this._onPlayerTap( player );
     return (
-      <View style={ styles.rowWrapper }>
-        <PlayerSlug player={player}></PlayerSlug>
-      </View> );
+      <TouchableHighlight onPress={ onPress }>
+        <View style={ styles.rowWrapper }>
+          <PlayerSlug player={ player }></PlayerSlug>
+        </View>
+      </TouchableHighlight> );
   }
 };
 

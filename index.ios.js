@@ -16,7 +16,7 @@ class MannCo extends Component {
       <NavigatorIOS
         style={ styles.container }
         initialRoute={{
-          title: "MannCo Leaderboard",
+          title: "Leaderboard",
           component: LeaderBoard
         }}/>
     );

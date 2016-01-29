@@ -30,5 +30,13 @@ module.exports = {
         data.results.map( convertPlayerStats );
         return data.results;
       } );
+  },
+  get: steamid => {
+    return fetch( PLAYER_URL )
+      .then( res => res.json() )
+      .then( data => {
+        var player = data.results.filter( p => p.STEAMID === steamid )[ 0 ];
+        return convertPlayerStats( player )
+      } );
   }
 };
