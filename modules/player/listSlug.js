@@ -18,7 +18,6 @@ class PlayerSlug extends Component {
 
   render() {
     var player = this.props.player;
-    var position = Number( this.props.position ) + 1;
     var icon = playerIcon( player, "150" );
 
     return (
@@ -38,7 +37,7 @@ class PlayerSlug extends Component {
           </View>
         </View>
         <View style={ styles.rightContainer }>
-          <Text style={ styles.position }>{ position }</Text>
+          <Text style={ styles.position }>{ this.props.position }</Text>
         </View>
       </View>
     );

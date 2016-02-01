@@ -104,10 +104,12 @@ class LeaderBoard extends Component {
     );
   }
   renderPlayer( player, sectionID, rowID ) {
+    var position = Number( rowID ) + 1;
+    
     return (
       <TouchableHighlight onPress={ () => this._onPlayerTap( player ) }>
         <View style={ styles.rowWrapper }>
-          <PlayerSlug player={ player } position={ rowID }></PlayerSlug>
+          <PlayerSlug player={ player } position={ position }></PlayerSlug>
         </View>
       </TouchableHighlight> );
   }
