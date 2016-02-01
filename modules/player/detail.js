@@ -49,8 +49,8 @@ class PlayerDetail extends Component {
             source={ icon }
             style={ styles.thumbnail }
             />
-          <Text style={ styles.text }>Points: { player.POINTS }</Text>
-          <Text style={ styles.text }>Kills: { player.KILLS }</Text>
+          <Text style={ styles.text }>Points: { player.POINTS } ({ player.ppm } ppm)</Text>
+          <Text style={ styles.text }>Kills: { player.KILLS } ({ player.kpm } kpm)</Text>
           <Text style={ styles.text }>Deaths: { player.Death }</Text>
           <Text style={ styles.text }>K/D: { player.kd }</Text>
           <Text style={ styles.text }>Assists: { player.KillAssist }</Text>

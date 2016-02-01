@@ -19,9 +19,15 @@ function convertPlayerStats( player )
   destructionAttrs.forEach( bldg => player[ bldg ] = Number( player[ bldg ] ) );
   tauntAttrs.forEach( taunt => player[ taunt ] = Number( player[ taunt ] ) );
 
-  player.kd = ( player.KILLS / ( player.Death || 0 ) ).toFixed( 2 );
+  player.kd = ratio( player.KILLS, player.Death );
+  player.kpm = ratio( player.KILLS, player.PLAYTIME );
+  player.ppm = ratio( player.POINTS, player.PLAYTIME );
 
   return player;
+}
+function ratio( numerator, denominator )
+{
+  return ( numerator / ( denominator || 1 ) ).toFixed( 2 );
 }
 
 module.exports = {
