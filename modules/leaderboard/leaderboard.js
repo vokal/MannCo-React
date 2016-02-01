@@ -14,13 +14,14 @@ import React, {
 import Player from "../player/services/player";
 import PlayerSlug from "../player/listSlug";
 import PlayerDetail from "../player/detail";
+import styles from "./styles/leaderboard";
 
 class LeaderBoard extends Component {
   constructor() {
     super();
     this.state = {
       isRefreshing: false,
-      loaded: false,
+      isLoaded: false,
       sortBy: "POINTS",
       dataSource: new ListView.DataSource( {
         rowHasChanged: ( row1, row2 ) => row1 !== row2
@@ -33,7 +34,7 @@ class LeaderBoard extends Component {
         list.sort( ( a, b ) => b[ this.state.sortBy ] - a[ this.state.sortBy ] );
         this.setState( {
           dataSource: this.state.dataSource.cloneWithRows( list ),
-          loaded: true,
+          isLoaded: true,
           sortBy: "KILLS"
         } );
       } )
@@ -64,7 +65,7 @@ class LeaderBoard extends Component {
   }
 
   render() {
-    if( !this.state.loaded )
+    if( !this.state.isLoaded )
     {
       return this.renderLoadingView();
     }
@@ -105,57 +106,16 @@ class LeaderBoard extends Component {
   }
   renderPlayer( player, sectionID, rowID ) {
     var position = Number( rowID ) + 1;
-    
+
     return (
-      <TouchableHighlight onPress={ () => this._onPlayerTap( player ) }>
-        <View style={ styles.rowWrapper }>
-          <PlayerSlug player={ player } position={ position }></PlayerSlug>
-        </View>
-      </TouchableHighlight> );
+      <View style={ styles.rowWrapper }>
+        <TouchableHighlight onPress={ () => this._onPlayerTap( player ) }>
+          <View>
+            <PlayerSlug player={ player } position={ position }></PlayerSlug>
+          </View>
+        </TouchableHighlight>
+      </View> );
   }
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    flex: 1,
-    marginTop: 65,
-    paddingTop: 4,
-    backgroundColor: "#ad5d34"
-  },
-  rowWrapper: {
-    borderRadius: 2,
-    borderWidth: 0,
-    flex: 1,
-    marginLeft: 8,
-    marginRight: 8,
-    marginBottom: 6,
-    shadowColor: "#000000",
-    shadowOpacity: 0.25,
-    shadowOffset: {
-      height: 1,
-      width: 0
-    }
-  },
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#ad5d34",
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10,
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5,
-  },
-  listview: {
-    paddingTop: 60,
-    backgroundColor: "#F5FCFF"
-  },
-});
 
 module.exports = LeaderBoard;
