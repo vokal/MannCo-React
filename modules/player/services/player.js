@@ -19,6 +19,8 @@ function convertPlayerStats( player )
   destructionAttrs.forEach( bldg => player[ bldg ] = Number( player[ bldg ] ) );
   tauntAttrs.forEach( taunt => player[ taunt ] = Number( player[ taunt ] ) );
 
+  player.kd = ( player.KILLS / ( player.Death || 0 ) ).toFixed( 2 );
+
   return player;
 }
 

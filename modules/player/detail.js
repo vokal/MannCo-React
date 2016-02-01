@@ -52,7 +52,7 @@ class PlayerDetail extends Component {
           <Text style={ styles.text }>Points: { player.POINTS }</Text>
           <Text style={ styles.text }>Kills: { player.KILLS }</Text>
           <Text style={ styles.text }>Deaths: { player.Death }</Text>
-          <Text style={ styles.text }>K/D: { ( player.KILLS / player.Death ).toFixed( 2 ) }</Text>
+          <Text style={ styles.text }>K/D: { player.kd }</Text>
           <Text style={ styles.text }>Assists: { player.KillAssist }</Text>
           <Text style={ styles.text }>Time Played: { player.PLAYTIME } minutes</Text>
         </View>
