@@ -9,12 +9,14 @@ import React, {
   View
 } from "react-native";
 import LeaderBoard from "./modules/leaderboard/leaderboard";
+import styles from "./modules/_app/styles/navigator";
 
 class MannCo extends Component {
   render() {
     return (
       <NavigatorIOS
-        style={ styles.container }
+        style={ styles.nav }
+        itemWrapperStyle={ styles.wrapper }
         initialRoute={{
           title: "Leaderboard",
           component: LeaderBoard
@@ -22,12 +24,5 @@ class MannCo extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#ad5d34"
-  }
-});
 
 AppRegistry.registerComponent( "MannCo", () => MannCo );
