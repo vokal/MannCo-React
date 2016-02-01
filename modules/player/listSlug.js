@@ -32,8 +32,9 @@ class PlayerSlug extends Component {
             { player.NAME.toUpperCase() }
           </Text>
           <View style={ styles.playerDetails }>
-            <Text style={ styles.playerKills }>Points: { player.POINTS }</Text>
-            <Text style={ styles.playerKills }>Kills: { player.KILLS }</Text>
+            <Text style={ styles.playerKills }>{ player.KILLS } kills</Text>
+            <Text style={ styles.playerKills }>{ player.kd } k/d</Text>
+            <Text style={ styles.playerKills }>{ player.POINTS } points</Text>
           </View>
         </View>
         <View style={ styles.rightContainer }>
