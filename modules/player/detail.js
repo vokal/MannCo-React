@@ -5,11 +5,14 @@ import React, {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   Image,
 } from "react-native";
 
 import Player from "./services/player";
 import playerIcon from "./filters/icon";
+
+import flex from "../_app/styles/flex";
 import styles from "./styles/detail";
 
 class PlayerDetail extends Component {
@@ -35,22 +38,22 @@ class PlayerDetail extends Component {
     if( !this.state.isLoaded )
     {
       return (
-        <View style={ styles.container }>
+        <View style={ flex.one }>
           <Text>Loading Player...</Text>
         </View>
       );
     }
 
     var player = this.state.player;
-    var icon = playerIcon( player, "300" );
+    var icon = playerIcon( player, "450" );
     return (
-      <View style={ styles.container }>
-        <View style={ styles.card }>
+      <ScrollView style={ [ flex.one, styles.scroll ] }>
+        <View style={ [ styles.card, flex.row ] }>
           <Image
             source={ icon }
             style={ styles.thumbnail }
             />
-          <View style={ styles.playerDetail }>
+          <View style={ flex.one }>
             <Text style={ styles.text }>{ player.POINTS } points ({ player.ppm } p/m)</Text>
             <Text style={ styles.text }>{ player.KILLS } kills ({ player.kpm } k/m)</Text>
             <Text style={ styles.text }>{ player.Death } deaths</Text>
@@ -59,7 +62,8 @@ class PlayerDetail extends Component {
             <Text style={ styles.text }>{ player.PLAYTIME } minutes</Text>
           </View>
         </View>
-      </View>
+
+      </ScrollView>
     );
   }
 };

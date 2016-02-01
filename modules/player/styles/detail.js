@@ -4,29 +4,35 @@ import {
 
 import {
   colors,
-  padding
+  padding,
+  fontSize
 } from "../../_app/styles/variables";
 
 module.exports = StyleSheet.create( {
-  container: {
-    flex: 1,
+  scroll: {
     padding: padding.s
   },
   card: {
     backgroundColor: colors.white,
-    flexDirection: "row",
+    flex: 1,
     marginBottom: padding.s,
     padding: padding.s
   },
   thumbnail: {
     height: 150,
-    marginRight: padding.m,
+    marginRight: padding.s,
     width: 150
   },
-  playerDetail: {
-    flex: 1
+  heading: {
+    marginBottom: padding.s,
+    marginTop: padding.m
+  },
+  headingText: {
+    color: colors.white,
+    fontSize: fontSize.l,
+    fontWeight: "bold"
   },
   text: {
-    marginBottom: padding.s
+    lineHeight: fontSize.l + 2
   }
 } );
