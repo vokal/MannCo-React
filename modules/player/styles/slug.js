@@ -8,28 +8,23 @@ import {
   fontSize
 } from "../../_app/styles/variables";
 
+var slugHeight = 75;
 module.exports = StyleSheet.create({
+
   container: {
     backgroundColor: colors.white,
-    flexDirection: "row",
-    height: 75
+    height: slugHeight
   },
   thumbnail: {
-    width: 75,
-    height: 75
-  },
-  detailContainer: {
-    flex: 1,
-    justifyContent: "center",
-    padding: padding.m
-  },
-  rightContainer: {
-    alignItems: "center",
-    height: 75,
-    justifyContent: "center",
-    width: 50
+    width: slugHeight,
+    height: slugHeight,
+    marginRight: padding.s,
   },
   position: {
+    height: slugHeight,
+    width: 50
+  },
+  positionText: {
     fontSize: fontSize.xl,
     textAlign: "center"
   },
@@ -37,9 +32,6 @@ module.exports = StyleSheet.create({
     color: colors.darkBg,
     fontSize: fontSize.l,
     marginBottom: padding.xs
-  },
-  playerDetails: {
-    flexDirection: "row"
   },
   playerKills: {
     color: colors.lightContrast,
