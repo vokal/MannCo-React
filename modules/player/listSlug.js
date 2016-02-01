@@ -8,7 +8,8 @@ import React, {
   Image
 } from "react-native";
 
-import playerIcon from "./filters/icon.js";
+import playerIcon from "./filters/icon";
+import styles from "./styles/slug";
 
 class PlayerSlug extends Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ class PlayerSlug extends Component {
 
   render() {
     var player = this.props.player;
+    var position = Number( this.props.position ) + 1;
     var icon = playerIcon( player, "150" );
 
     return (
@@ -25,43 +27,21 @@ class PlayerSlug extends Component {
           source={ icon }
           style={ styles.thumbnail }
           />
-        <View style={ styles.rightContainer }>
-          <Text style={ styles.playerName }>{ player.NAME.toUpperCase() }</Text>
-          <Text style={ styles.playerKills }>
-            Points: { player.POINTS } - Kills: { player.KILLS }
+        <View style={ styles.detailContainer }>
+          <Text style={ styles.playerName } numberOfLines={ 1 }>
+            { player.NAME.toUpperCase() }
           </Text>
+          <View style={ styles.playerDetails }>
+            <Text style={ styles.playerKills }>Points: { player.POINTS }</Text>
+            <Text style={ styles.playerKills }>Kills: { player.KILLS }</Text>
+          </View>
+        </View>
+        <View style={ styles.rightContainer }>
+          <Text style={ styles.position }>{ position }</Text>
         </View>
       </View>
     );
   }
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  thumbnail: {
-    width: 75,
-    height: 75
-  },
-  rightContainer: {
-    flex: 1
-  },
-  playerName: {
-    fontSize: 20,
-    textAlign: "left",
-    color: "#333333",
-    paddingLeft: 15
-  },
-  playerKills: {
-    textAlign: "left",
-    color: "#888888",
-    paddingLeft: 25
-  }
-});
 
 module.exports = PlayerSlug;

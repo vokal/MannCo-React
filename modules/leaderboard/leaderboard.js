@@ -103,11 +103,11 @@ class LeaderBoard extends Component {
       </View>
     );
   }
-  renderPlayer( player ) {
+  renderPlayer( player, sectionID, rowID ) {
     return (
       <TouchableHighlight onPress={ () => this._onPlayerTap( player ) }>
         <View style={ styles.rowWrapper }>
-          <PlayerSlug player={ player }></PlayerSlug>
+          <PlayerSlug player={ player } position={ rowID }></PlayerSlug>
         </View>
       </TouchableHighlight> );
   }
@@ -121,9 +121,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#ad5d34"
   },
   rowWrapper: {
-    borderColor: "#F5FCFF",
-    borderRadius: 1,
-    borderWidth: 1,
+    borderRadius: 2,
+    borderWidth: 0,
     flex: 1,
     marginLeft: 8,
     marginRight: 8,
@@ -139,7 +138,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#48BBEC",
+    backgroundColor: "#ad5d34",
   },
   welcome: {
     fontSize: 20,
