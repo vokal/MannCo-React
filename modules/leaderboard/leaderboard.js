@@ -57,7 +57,7 @@ class LeaderBoard extends Component {
   _onPlayerTap( player ) {
     this.props.navigator.push( {
       component: PlayerDetail,
-      title: player.NAME.toUpperCase(),
+      title: player.NAME,
       passProps: {
         steamid: player.STEAMID
       }
@@ -86,7 +86,6 @@ class LeaderBoard extends Component {
         <ListView
           dataSource={ this.state.dataSource }
           renderRow={ this.renderPlayer.bind( this ) }
-          style={ styles.listView }
           />
       </ScrollView>
     );

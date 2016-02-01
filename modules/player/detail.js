@@ -9,7 +9,8 @@ import React, {
 } from "react-native";
 
 import Player from "./services/player";
-import playerIcon from "./filters/icon.js";
+import playerIcon from "./filters/icon";
+import styles from "./styles/detail";
 
 class PlayerDetail extends Component {
   constructor() {
@@ -49,36 +50,18 @@ class PlayerDetail extends Component {
             source={ icon }
             style={ styles.thumbnail }
             />
-          <Text style={ styles.text }>Points: { player.POINTS } ({ player.ppm } ppm)</Text>
-          <Text style={ styles.text }>Kills: { player.KILLS } ({ player.kpm } kpm)</Text>
-          <Text style={ styles.text }>Deaths: { player.Death }</Text>
-          <Text style={ styles.text }>K/D: { player.kd }</Text>
-          <Text style={ styles.text }>Assists: { player.KillAssist }</Text>
-          <Text style={ styles.text }>Time Played: { player.PLAYTIME } minutes</Text>
+          <View style={ styles.playerDetail }>
+            <Text style={ styles.text }>{ player.POINTS } points ({ player.ppm } p/m)</Text>
+            <Text style={ styles.text }>{ player.KILLS } kills ({ player.kpm } k/m)</Text>
+            <Text style={ styles.text }>{ player.Death } deaths</Text>
+            <Text style={ styles.text }>{ player.kd } k/d</Text>
+            <Text style={ styles.text }>{ player.KillAssist } assists</Text>
+            <Text style={ styles.text }>{ player.PLAYTIME } minutes</Text>
+          </View>
         </View>
       </View>
     );
   }
 };
-
-const styles = StyleSheet.create( {
-  container: {
-    flex: 1,
-    paddingTop: 65,
-    backgroundColor: "#f9f7f2",
-  },
-  card: {
-    margin: 6,
-    padding: 8,
-    backgroundColor: "#ffffff"
-  },
-  thumbnail: {
-    height: 150,
-    width: 150,
-  },
-  text: {
-    marginTop: 6,
-  },
-} );
 
 module.exports = PlayerDetail;

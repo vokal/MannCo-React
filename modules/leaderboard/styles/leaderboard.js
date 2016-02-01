@@ -11,14 +11,12 @@ import {
 module.exports = StyleSheet.create( {
   scrollView: {
     flex: 1,
-    marginTop: 65,
-    paddingTop: 4,
+    padding: padding.s,
     backgroundColor: colors.orange
   },
   rowWrapper: {
-    margin: padding.s,
-    marginTop: 0,
-    shadowColor: "#000000",
+    marginBottom: padding.s,
+    shadowColor: colors.black,
     shadowOpacity: 0.45,
     shadowOffset: {
       height: 1,
@@ -28,8 +26,7 @@ module.exports = StyleSheet.create( {
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: colors.blueAlt
+    alignItems: "center"
   },
   welcome: {
     fontSize: 20,
@@ -40,8 +37,5 @@ module.exports = StyleSheet.create( {
     textAlign: "center",
     color: "#333333",
     marginBottom: 5,
-  },
-  listview: {
-    paddingTop: 60
   }
 } );
