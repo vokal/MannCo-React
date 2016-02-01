@@ -11,6 +11,7 @@ import React, {
 
 import Player from "./services/player";
 import playerIcon from "./filters/icon";
+import PlayerClassList from "./classList";
 
 import flex from "../_app/styles/flex";
 import styles from "./styles/detail";
@@ -63,6 +64,12 @@ class PlayerDetail extends Component {
           </View>
         </View>
 
+        <View style={ styles.heading }>
+          <Text style={ styles.headingText }>Class Stats</Text>
+        </View>
+        <View style={ styles.card }>
+          <PlayerClassList player={ player }></PlayerClassList>
+        </View>
       </ScrollView>
     );
   }
