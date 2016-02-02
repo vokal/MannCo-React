@@ -46,11 +46,11 @@ class PlayerClassList extends Component {
     );
   }
   renderClass( cls, i ) {
-    if( !this.state.showAll && i > 2 )
+    var player = this.props.player;
+    if( ( !this.state.showAll && i > 2 ) || player[ cls.killsAttr ] === 0  )
     {
       return;
     }
-    var player = this.props.player;
 
     return (
       <View style={ [ flex.row, list.row, list.divider ] } key={ i }>
