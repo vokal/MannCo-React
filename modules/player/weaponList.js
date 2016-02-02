@@ -62,7 +62,7 @@ class PlayerWeaponList extends Component {
         </View>
         <View style={ [ flex.one, flex.center ] }>
           <Text style={ list.class }>{ weapon.name }</Text>
-          <Text style={ [ flex.one, styles.text ] }>{ player[ weapon.killsAttr ] } kills</Text>
+          <Text style={ styles.text }>{ player[ weapon.killsAttr ] } kills</Text>
         </View>
       </View>
     );
