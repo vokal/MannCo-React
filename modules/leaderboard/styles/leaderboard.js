@@ -23,6 +23,10 @@ module.exports = StyleSheet.create( {
       width: 1
     }
   },
+  toggleWrap: {
+    marginBottom: padding.m,
+    marginTop: padding.xs
+  },
   container: {
     flex: 1,
     justifyContent: "center",
