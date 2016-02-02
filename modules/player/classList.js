@@ -60,7 +60,13 @@ class PlayerClassList extends Component {
           />
         <View style={ [ flex.one, flex.center ] }>
           <Text style={ list.class }>{ cls.name }</Text>
-          <Text style={ styles.text }>{ player[ cls.killsAttr ] } kills</Text>
+          <View style={ flex.row }>
+            <Text style={ [ flex.one, styles.text ] }>{ player[ cls.killsAttr ] } kills</Text>
+            <Text style={ [ flex.one, styles.text ] }>{ player[ cls.deathsAttr ] } deaths</Text>
+            <Text style={ [ flex.one, styles.text ] }>
+              { ( player[ cls.killsAttr ] / player[ cls.deathsAttr ] || 1 ).toFixed( 2 ) } k/d
+            </Text>
+          </View>
         </View>
       </View>
     );
