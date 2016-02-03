@@ -14,44 +14,51 @@ import React, {
 import Player from "../player/services/player";
 import PlayerSlug from "../player/listSlug";
 import PlayerDetail from "../player/detail";
+import SortToggle from "./sortToggle";
 import styles from "./styles/leaderboard";
 
 class LeaderBoard extends Component {
   constructor() {
     super();
     this.state = {
-      isRefreshing: false,
-      isLoaded: false,
       sortBy: "POINTS",
+      descending: true,
       dataSource: new ListView.DataSource( {
         rowHasChanged: ( row1, row2 ) => row1 !== row2
       } ),
     };
   }
+
   componentDidMount() {
-    Player.getAll()
-      .then( list => {
-        list.sort( ( a, b ) => b[ this.state.sortBy ] - a[ this.state.sortBy ] );
-        this.setState( {
-          dataSource: this.state.dataSource.cloneWithRows( list ),
-          isLoaded: true,
-          sortBy: "KILLS"
-        } );
-      } )
+    this.setPlayerList()
+      .then( () => this.setState( { isLoaded: true } ) )
       .done();
   }
 
+  setPlayerList() {
+    return Player.getAll()
+      .then( ( list ) => {
+        list.sort( ( a, b ) => {
+          return this.state.descending ?
+            b[ this.state.sortBy ] - a[ this.state.sortBy ] :
+            a[ this.state.sortBy ] - b[ this.state.sortBy ];
+        } );
+        this.setState( { dataSource: this.state.dataSource.cloneWithRows( list ) } );
+        return list;
+      } );
+  }
+
+  _onToggleSort( sort ) {
+    this.setState( {
+      sortBy: sort.attr,
+      descending: sort.descending
+    } );
+    this._onRefresh();
+  }
   _onRefresh() {
     this.setState( { isRefreshing: true } );
-    Player.getAll()
-      .then( list => {
-        list.sort( ( a, b ) => b[ this.state.sortBy ] - a[ this.state.sortBy ] );
-        this.setState( {
-          dataSource: this.state.dataSource.cloneWithRows( list ),
-          isRefreshing: false,
-          sortBy: this.state.sortBy === "POINTS" ? "KILLS" : "POINTS"
-        } );
-      } )
+    this.setPlayerList()
+      .then( () => this.setState( { isRefreshing: false } ) )
       .done();
   }
   _onPlayerTap( player ) {
@@ -83,6 +90,13 @@ class LeaderBoard extends Component {
             progressBackgroundColor="#ffff00"
           />
         }>
+
+        <View style={ styles.toggleWrap }>
+          <SortToggle
+            selected={ this.state.sortBy }
+            onValueChange={ sort => this._onToggleSort( sort ) }>
+          </SortToggle>
+        </View>
         <ListView
           dataSource={ this.state.dataSource }
           renderRow={ this.renderPlayer.bind( this ) }
