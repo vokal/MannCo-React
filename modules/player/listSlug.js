@@ -22,7 +22,7 @@ class PlayerSlug extends Component {
     var icon = playerIcon( player, "150" );
 
     return (
-      <View style={ [ flex.row, styles.container ]}>
+      <View style={ [ flex.row, styles.container ] }>
         <Image
           source={ icon }
           style={ styles.thumbnail }

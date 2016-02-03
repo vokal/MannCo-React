@@ -24,6 +24,15 @@ module.exports = StyleSheet.create( {
     marginRight: padding.s,
     width: 75
   },
+  thumbnailWrapper: {
+    backgroundColor: colors.gray,
+    justifyContent: "center",
+    padding: padding.s
+  },
+  icon: {
+    resizeMode: "contain",
+    width: 75 - ( 2 * padding.s )
+  },
   toggleRow: {
     marginTop: padding.s,
     padding: padding.s

@@ -9,6 +9,6 @@ module.exports = ( player, size ) => {
   }
 
   return classMap
-    .map( cls => { return { img: cls.img, kills: player[ cls.killsAttr ] } } )
+    .map( cls => ( { img: cls.img, kills: player[ cls.killsAttr ] } ) )
     .sort( ( a, b ) => b.kills - a.kills )[ 0 ].img;
 };
